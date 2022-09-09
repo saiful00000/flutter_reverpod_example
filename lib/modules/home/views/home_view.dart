@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_example/modules/home/providers/btm_nav_bar_state_provider.dart';
+import 'package:riverpod_example/modules/todo/views/todo_view.dart';
+
+final btmNavBarStateProvider = StateProvider((ref) => 0);
 
 class HomeView extends ConsumerWidget {
   HomeView({Key? key}) : super(key: key);
@@ -17,9 +19,10 @@ class HomeView extends ConsumerWidget {
       ),
       body: PageView(
         controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
         children: const [
           Center(child: Text('Counter')),
-          Center(child: Text('Todo')),
+          Center(child: TodoView()),
           Center(child: Text('Search')),
         ],
       ),
