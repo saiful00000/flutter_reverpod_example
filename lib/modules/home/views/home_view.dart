@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_example/modules/posts/views/posts_view.dart';
 import 'package:riverpod_example/modules/todo/views/todo_view.dart';
 
 final btmNavBarStateProvider = StateProvider((ref) => 0);
@@ -23,11 +24,13 @@ class HomeView extends ConsumerWidget {
         children: const [
           Center(child: Text('Counter')),
           Center(child: TodoView()),
+          PostsView(),
           Center(child: Text('Search')),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: btmNavCurrentIndex,
+        backgroundColor: Colors.black,
         onTap: (index) {
           pageController.animateToPage(
             index,
@@ -39,6 +42,7 @@ class HomeView extends ConsumerWidget {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.numbers), label: 'Count'),
           BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Todo'),
+          BottomNavigationBarItem(icon: Icon(Icons.post_add), label: 'Posts'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
       ),

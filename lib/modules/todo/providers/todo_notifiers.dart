@@ -15,4 +15,6 @@ class TodoNotifiers extends StateNotifier<List<Todo>>{
           todo
     ];
   }
+
+  void clearTodoList () => state = [];
 }

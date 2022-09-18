@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_example/modules/todo/models/todo.dart';
-import 'package:riverpod_example/modules/todo/notifiers/todo_notifiers.dart';
+import 'package:riverpod_example/modules/todo/providers/todo_notifiers.dart';
 
 final todoProvider = StateNotifierProvider<TodoNotifiers, List<Todo>>((ref) {
   return TodoNotifiers();
@@ -28,10 +28,14 @@ class TodoView extends ConsumerWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
         onPressed: () {
-          ref.read(todoProvider.notifier).addTodo(
-                Todo(name: '${todoList.length + 1}'),
-              );
+          if(todoList.length == 5){
+            ref.read(todoProvider.notifier).clearTodoList();
+          }else{
+            ref.read(todoProvider.notifier)
+                .addTodo(Todo(name: '${todoList.length + 1}'));
+          }
         },
       ),
     );
